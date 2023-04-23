@@ -17,7 +17,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
 
   useEffect(() => {
     const uncompletedTodos = todos.filter((todo) => !todo.completed);
-    const message = `You have ${uncompletedTodos.length} uncompleted todos. They are: ${uncompletedTodos.map((todo) => todo.task).join(', and ')}`;
+    const message = `You have ${uncompletedTodos.length} uncompleted todos. They are: ${uncompletedTodos.map((todo) => todo.task).join(', ')}`;
 
     // Create a new speech synthesis utterance with the message.
     const utterance = new SpeechSynthesisUtterance(message);
