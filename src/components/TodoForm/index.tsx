@@ -12,9 +12,7 @@ interface TodoFormProps {
 }
 
 declare global {
-  const SpeechRecognition: any;
   type SpeechRecognitionType = typeof SpeechRecognition;
-  type SpeechRecognitionEvent = any;
 
   interface Window {
     webkitSpeechRecognition: typeof SpeechRecognition;
