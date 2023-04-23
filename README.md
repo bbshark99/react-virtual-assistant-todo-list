@@ -1,4 +1,4 @@
-## Voice Virtual Assistant
+## Voice Virtual Assistant (supported only on Google chrome and Safari)
 
 - Input new todo with your voice
 - Speak uncompleted todos
