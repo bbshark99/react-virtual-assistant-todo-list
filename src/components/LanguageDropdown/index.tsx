@@ -6,10 +6,12 @@ import {
 import { useState } from 'react'
 
 export interface LanguageDropdownProps {
+  className?: string
   onChange: (language: string) => void
 }
 
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
+  className = '',
   onChange,
 }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<LANGUAGE>(
@@ -18,7 +20,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   const [showMenu, setShowMenu] = useState<boolean>(false)
 
   return (
-    <div className="relative inline-block text-left">
+    <div className={`relative inline-block text-left ${className}`}>
       <div>
         <button
           type="button"
@@ -58,8 +60,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
                 value={language.value}
                 className={`${
                   language.value === selectedLanguage.value
-                    ? 'bg-gray-100 text-gray-900'
-                    : 'text-gray-700'
+                    ? 'bg-gray-100 text-gray-100'
+                    : 'text-gray-300'
                 } block w-full text-left px-4 py-2 text-sm`}
                 role="menuitem"
                 onClick={() => {

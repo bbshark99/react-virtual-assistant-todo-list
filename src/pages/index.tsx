@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { Inter } from 'next/font/google'
 import { TodoList } from '@/components/TodoList'
 import { TodoForm, Todo } from '@/components/TodoForm'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([
@@ -31,10 +34,8 @@ export default function Home() {
   }
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24`}
-    >
-      <h1 className="text-center text-5xl">Todo List</h1>
+    <main id="HomePage" className={`p-10 ${inter.className}`}>
+      <h1 className="text-center text-5xl mb-8">Todo List</h1>
       <TodoForm onAddTodo={handleAddTodo} />
       <TodoList todos={todos} onToggleTodo={handleToggleTodo} />
     </main>

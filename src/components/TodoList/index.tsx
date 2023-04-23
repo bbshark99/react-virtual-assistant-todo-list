@@ -30,13 +30,15 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
   }, [todos, language]);
 
   return (
-    <ul className="mt-4 mb-10">
+    <ul className="my-10">
+      <LanguageDropdown className='mb-4' onChange={(lang) => setLanguage(lang)} />
+
       {todos.map((todo) => (
         <li
           key={todo.id}
           onClick={() => handleTodoClick(todo)}
           className={`flex items-center py-2 ${
-            todo.completed ? 'line-through text-gray-500' : 'text-gray-700'
+            todo.completed ? 'line-through text-gray-400' : 'text-gray-300'
           } cursor-pointer`}
         >
           <input
@@ -48,8 +50,6 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
           <span>{todo.task}</span>
         </li>
       ))}
-
-      <LanguageDropdown onChange={(lang) => setLanguage(lang)} />
     </ul>
   );
 }
