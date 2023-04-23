@@ -3,7 +3,13 @@ import { TodoList } from '@/components/TodoList'
 import { TodoForm, Todo } from '@/components/TodoForm'
 
 export default function Home() {
-  const [todos, setTodos] = useState<Todo[]>([])
+  const [todos, setTodos] = useState<Todo[]>([
+    {
+      id: 1,
+      completed: false,
+      task: 'Today is sunday',
+    }
+  ])
 
   const handleAddTodo = (task: string) => {
     setTodos((values) => [

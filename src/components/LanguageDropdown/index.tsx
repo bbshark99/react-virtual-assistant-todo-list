@@ -1,3 +1,8 @@
+import {
+  INITIAL_LANGUAGE,
+  LANGUAGE,
+  SUPPORTED_LANGUAGES,
+} from '@/utils/constants'
 import { useState } from 'react'
 
 export interface LanguageDropdownProps {
@@ -8,7 +13,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   onChange,
 }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<LANGUAGE>(
-    SUPPORTED_LANGUAGES[0],
+    INITIAL_LANGUAGE,
   )
   const [showMenu, setShowMenu] = useState<boolean>(false)
 
@@ -21,7 +26,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           id="language-menu"
           aria-haspopup="true"
           aria-expanded="true"
-          onClick={() => setShowMenu(v => !v)}
+          onClick={() => setShowMenu((v) => !v)}
         >
           {`Language: ${selectedLanguage.title}`}
           <svg
@@ -60,6 +65,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
                 onClick={() => {
                   setSelectedLanguage(language)
                   onChange(language.value)
+                  setShowMenu(false)
                 }}
               >
                 {language.title}
@@ -71,20 +77,3 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     </div>
   )
 }
-
-const SUPPORTED_LANGUAGES = [
-  {
-    title: 'English (United States)',
-    value: 'en-US',
-  },
-  {
-    title: 'Chinese (Simplified)',
-    value: 'zh-CN',
-  },
-  {
-    title: 'Korean',
-    value: 'ko-KR',
-  },
-]
-
-type LANGUAGE = typeof SUPPORTED_LANGUAGES[number]

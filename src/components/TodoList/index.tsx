@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Todo } from '../TodoForm'
 import { LanguageDropdown } from '../LanguageDropdown'
+import { LANGUAGE, INITIAL_LANGUAGE } from '@/utils/constants'
 
 export interface TodoListProps {
   todos: Todo[]
@@ -8,7 +9,7 @@ export interface TodoListProps {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
-  const [language, setLanguage] = useState('en-US');
+  const [language, setLanguage] = useState<LANGUAGE['value']>(INITIAL_LANGUAGE.value);
 
   const handleTodoClick = (todo: Todo) => {
     onToggleTodo(todo.id);
@@ -16,12 +17,13 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
 
   useEffect(() => {
     const uncompletedTodos = todos.filter((todo) => !todo.completed);
-    const message = `You have ${uncompletedTodos.length} uncompleted todos. They are: ${uncompletedTodos.map((todo) => todo.task).join(', ')}`;
+    const message = `You have ${uncompletedTodos.length} uncompleted todos. They are: ${uncompletedTodos.map((todo) => todo.task).join(', and ')}`;
 
     // Create a new speech synthesis utterance with the message.
     const utterance = new SpeechSynthesisUtterance(message);
+    const voices = speechSynthesis.getVoices();
     // Set the voice to the default voice.
-    utterance.voice = speechSynthesis.getVoices()[0];
+    utterance.voice = voices.find(voice => voice.lang === language) || voices[0];
     utterance.lang = language;
     // Speak the utterance.
     speechSynthesis.speak(utterance);
@@ -47,7 +49,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
         </li>
       ))}
 
-      <LanguageDropdown onChange={(lang) => setLanguage(lang)} />
+      {/* <LanguageDropdown onChange={(lang) => setLanguage(lang)} /> */}
     </ul>
   );
 }
