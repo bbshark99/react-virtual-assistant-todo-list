@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([
     {
-      id: 1,
+      id: 0,
       completed: false,
       task: 'Today is sunday',
     }
