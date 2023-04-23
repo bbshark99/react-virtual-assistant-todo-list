@@ -49,7 +49,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
         </li>
       ))}
 
-      {/* <LanguageDropdown onChange={(lang) => setLanguage(lang)} /> */}
+      <LanguageDropdown onChange={(lang) => setLanguage(lang)} />
     </ul>
   );
 }
