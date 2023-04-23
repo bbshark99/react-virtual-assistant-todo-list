@@ -28,7 +28,7 @@ export default function Home() {
   const handleToggleTodo = (todoId: number) => {
     setTodos((values) =>
       values.map((value) =>
-        value.id === todoId ? { ...value, completed: !value.completed } : value,
+        value.id === todoId ? { ...value, completed: !value.completed } : { ...value },
       ),
     )
   }
